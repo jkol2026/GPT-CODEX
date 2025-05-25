@@ -1,0 +1,11 @@
+{
+  "name": "academic-help-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "devDependencies": {
+    "lite-server": "^2.7.2"
+  }
+}
