@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place Order - Academic Help</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Academic Help</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="order.html">Order</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Order Form</h2>
+    <form id="orderForm" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp Number" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <select name="serviceType" required>
+        <option value="">Select Service</option>
+        <option value="Essay">Essay</option>
+        <option value="Exam">Exam</option>
+        <option value="Project">Project</option>
+        <option value="Coding">Coding</option>
+        <option value="Proctored Test">Proctored Test</option>
+        <option value="Business Plan">Business Plan</option>
+      </select>
+      <input type="text" name="deadline" placeholder="Deadline" required>
+      <input type="text" name="timeZone" placeholder="Time Zone" required>
+      <textarea name="description" placeholder="Description/Instructions"></textarea>
+      <input type="file" name="file">
+      <button type="submit">Submit</button>
+    </form>
+    <p id="confirmation" style="display:none;">Thank you! Your order has been submitted.</p>
+  </div>
+  <footer>&copy; 2024 Academic Help</footer>
+<script>
+const form = document.getElementById('orderForm');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const res = await fetch('http://localhost:5000/api/orders', {
+    method: 'POST',
+    body: data
+  });
+  if (res.ok) {
+    document.getElementById('confirmation').style.display = 'block';
+    form.reset();
+  } else {
+    alert('Error submitting order');
+  }
+});
+</script>
+</body>
+</html>
